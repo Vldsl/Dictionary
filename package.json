@@ -1,0 +1,17 @@
+{
+  "name": "dictionary",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "sass": "^1.62.1",
+    "vite": "^4.3.8"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
