@@ -1,3 +1,5 @@
+@import "normalize.css";
+
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -85,12 +87,14 @@ textarea {
 }
 
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -186,22 +190,23 @@ template {
   padding: 0;
 }
 
-ul, ol, li {
+ul,
+ol,
+li {
   list-style: none;
 }
 
 body {
-	font-family: sans-serif;
-	line-height: 1.1;
-	background-color: #BFACE0;
+  font-family: sans-serif;
+  line-height: 1.1;
+  background-color: #bface0;
 }
 
 .error {
   border: 2px solid red;
-  background-color: #FFD6D6; 
+  background-color: #ffd6d6;
   color: red;
 }
-
 
 .none {
   display: none !important;
@@ -217,7 +222,7 @@ body {
 }
 
 .new-word::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: -15px;

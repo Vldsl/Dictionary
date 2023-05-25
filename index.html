@@ -1,127 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictionary</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dictionary</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <body>
+    <div class="container">
+      <div class="mb-4 d-flex justify-content-between align-items-center">
+        <h1>Мой англо-русский словарь</h1>
+        <p class="mb-0">Всего: <span id="word-count">0</span> слов</p>
+      </div>
+      <input
+        type="text"
+        class="form-control mb-2"
+        id="search-input"
+        placeholder="Поиск слова"
+      />
 
-<body>
-  <div class="container">
-    <div class="mb-4 d-flex justify-content-between align-items-center">
-      <h1>Мой англо-русский словарь</h1>
-      <p class="mb-0">Всего: <span id="word-count">0</span> слов</p>
-    </div>
-      <input type="text" class="form-control mb-2" id="search-input" placeholder="Поиск слова">
-      
-       <form id="form">
-          <div class="mb-3 d-flex gap-3">
-            <div class="flex-grow-1 flex-shrink-1 flex-basis-auto">
-              <label for="eng" class="form-label">Слово</label>
-              <input
+      <form id="form">
+        <div class="mb-3 d-flex gap-3">
+          <div class="flex-grow-1 flex-shrink-1 flex-basis-auto">
+            <label for="eng" class="form-label">Слово</label>
+            <input
               type="text"
               id="eng"
               class="form-control"
               name="input"
               required
               minlength="1"
-              />
-            </div>
-            <div class="flex-grow-1 flex-shrink-1 flex-basis-auto">
-              <label for="rus" class="form-label">Перевод</label>
-              <input
+            />
+          </div>
+          <div class="flex-grow-1 flex-shrink-1 flex-basis-auto">
+            <label for="rus" class="form-label">Перевод</label>
+            <input
               type="text"
               id="rus"
               class="form-control"
               name="input"
               required
               minlength="1"
-              />
-            </div>
+            />
           </div>
-          <div class="mb-3 select">
-            <label for="category-select">Категория:</label>
-            <select id="category-select">
-              <option value="" selected>Выберите</option>
-              <option value="food">Еда</option>
-              <option value="animals">Животные</option>
-              <option value="nature">Природа</option>
-              <!-- добавьте другие категории, если нужно -->
-            </select>
-            <label for="part-select">Часть речи:</label>
-            <select id="part-select">
-              <option value="" selected>Выберите</option>
-              <option value="noun">Существительные</option>
-              <option value="verb">Глаголы</option>
-              <option value="adjective">Прилагательные</option>
-              <option value="adverb">Наречие</option>
-              <!-- добавьте другие категории, если нужно -->
-            </select>
-            <label for="level-select">Уровень сложности:</label>
-            <select id="level-select">
-              <option value="" selected>Выберите</option>
-              <option value="easy">Начальный</option>
-              <option value="medium">Средний</option>
-              <option value="hard">Продвинутый</option>
-              <!-- добавьте другие категории, если нужно -->
-            </select>
-            <label for="type-select">Тип использования:</label>
-            <select id="type-select">
-              <option value="" selected>Выберите</option>
-              <option value="colloquial">Разговорный</option>
-              <option value="formal">Официальный</option>
-              <option value="technical">Технический</option>
-              <!-- добавьте другие категории, если нужно -->
-            </select>
-          </div>
-            <button id="add-word-btn" class="btn btn-primary mb-4" type="submit">Добавить слово</button>
-        </form>
+        </div>
+        <div class="mb-3 select">
+          <label for="category-select">Категория:</label>
+          <select id="category-select">
+            <option value="" selected>Выберите</option>
+            <option value="food">Еда</option>
+            <option value="animals">Животные</option>
+            <option value="nature">Природа</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <label for="part-select">Часть речи:</label>
+          <select id="part-select">
+            <option value="" selected>Выберите</option>
+            <option value="noun">Существительные</option>
+            <option value="verb">Глаголы</option>
+            <option value="adjective">Прилагательные</option>
+            <option value="adverb">Наречие</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <label for="level-select">Уровень сложности:</label>
+          <select id="level-select">
+            <option value="" selected>Выберите</option>
+            <option value="easy">Начальный</option>
+            <option value="medium">Средний</option>
+            <option value="hard">Продвинутый</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <label for="type-select">Тип использования:</label>
+          <select id="type-select">
+            <option value="" selected>Выберите</option>
+            <option value="colloquial">Разговорный</option>
+            <option value="formal">Официальный</option>
+            <option value="technical">Технический</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+        </div>
+        <button id="add-word-btn" class="btn btn-primary mb-4" type="submit">
+          Добавить слово
+        </button>
+      </form>
 
-  <div class="mb-3 d-flex justify-content-between">
-    <h2>Сохраненные слова:</h2>
-    <div>
-      <select id="category-find">
-        <option value="" selected>Выберите категорию</option>
-        <option value="food">Еда</option>
-        <option value="animals">Животные</option>
-        <option value="nature">Природа</option>
-        <!-- добавьте другие категории, если нужно -->
-      </select>
-      <select id="part-find">
-        <option value="" selected>Часть речи</option>
-        <option value="noun">Существительные</option>
-        <option value="verb">Глаголы</option>
-        <option value="adjective">Прилагательные</option>
-        <option value="adverb">Наречие</option>
-        <!-- добавьте другие категории, если нужно -->
-      </select>
-      <select id="level-find">
-        <option value="" selected>Уровень сложности</option>
-        <option value="easy">Начальный</option>
-        <option value="medium">Средний</option>
-        <option value="hard">Продвинутый</option>
-      </select>
-      <select id="type-find">
-        <option value="" selected>Тип использования</option>
-        <option value="colloquial">Разговорный</option>
-        <option value="formal">Официальный</option>
-        <option value="technical">Технический</option>
-        <!-- добавьте другие категории, если нужно -->
-      </select>
+      <div class="mb-3 d-flex justify-content-between">
+        <h2>Сохраненные слова:</h2>
+        <div>
+          <select id="category-find">
+            <option value="" selected>Выберите категорию</option>
+            <option value="food">Еда</option>
+            <option value="animals">Животные</option>
+            <option value="nature">Природа</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <select id="part-find">
+            <option value="" selected>Часть речи</option>
+            <option value="noun">Существительные</option>
+            <option value="verb">Глаголы</option>
+            <option value="adjective">Прилагательные</option>
+            <option value="adverb">Наречие</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <select id="level-find">
+            <option value="" selected>Уровень сложности</option>
+            <option value="easy">Начальный</option>
+            <option value="medium">Средний</option>
+            <option value="hard">Продвинутый</option>
+          </select>
+          <select id="type-find">
+            <option value="" selected>Тип использования</option>
+            <option value="colloquial">Разговорный</option>
+            <option value="formal">Официальный</option>
+            <option value="technical">Технический</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+        </div>
+      </div>
+
+      <ul id="list" class="list-group mb-4"></ul>
     </div>
-  </div>
-
-
-  <ul id="list" class="list-group mb-4"></ul>
-</div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-  <script src="js/translater.js"></script>
-  <script src="js/app.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+    <script src="src/js/translater.js" type="module"></script>
+    <script src="src/js/app.js" type="module"></script>
+  </body>
 </html>

@@ -138,7 +138,7 @@
 
 // 		eng.addEventListener('blur', handleEngBlur);
 // 	}
-	
+
 // 	if (e.target.dataset.action === 'edit-rus') {
 // 		rus.contentEditable = 'true';
 // 		rus.focus();
@@ -261,10 +261,10 @@
 // 				eng.blur();
 // 			}
 // 		});
-		
+
 // 		eng.addEventListener('blur', () => {
 // 			const newEngText = eng.innerText.trim();
-	
+
 // 			if (newEngText === '') {
 // 				// Если новое значение пустое, удаляем todo элемент
 // 				// Здесь можно написать функцию удаления todo элемента
@@ -283,7 +283,7 @@
 // 			eng.contentEditable = 'false';
 // 		});
 // 	}
-	
+
 // 	if (e.target.dataset.action === 'edit-rus') {
 // 		console.log('edit-rus')
 // 		let prevRusText = rus.innerText;
@@ -296,11 +296,11 @@
 // 				rus.blur();
 // 			}
 // 		});
-		
+
 // 		rus.addEventListener('blur', () => {
 // 			console.log('Blur start');
 // 			const newRusText = rus.innerText.trim();
-	
+
 // 			if (newRusText === '') {
 // 				// Если новое значение пустое, удаляем todo элемент
 // 				// Здесь можно написать функцию удаления todo элемента
