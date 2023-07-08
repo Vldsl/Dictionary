@@ -1,128 +1,172 @@
 import { renderList } from "./render";
-import { checkEmptyList, saveToLS, updateWordCount } from "./utils";
-import { words } from "./vars";
+import {
+  showEmptyList,
+  updateWordCount,
+  clearCheckWords,
+  updateToggleSelectAllBtn,
+  updateDelAllWordsBtn,
+  updateDelDoneWordsBtn,
+  updateMarkUndoneBtn,
+  updateDeletedWordCount,
+  updatePageControl,
+  saveToLS,
+  generatePageNumbers,
+} from "./utils";
+import { checkWords, delWords, pageSize, words } from "./vars";
 
 export function handleAction(e) {
   e.preventDefault();
-  // if (!e.target.matches('.btn')) return
-  const parentNode = e.target.closest(".list-group-item");
-  const id = Number(parentNode.dataset.id);
-  const word = words.find((word) => word.id === id);
-  const wordIndex = words.findIndex((word) => word.id === id);
+  const { target } = e;
+  // if (!target.matches('.btn')) return
+  // if (!target.classList.contains("btn")) return;
+  const parentNode = target.closest(".list-group-item");
+  const wordId = +parentNode.dataset.id;
+  const wordIndex = words.findIndex(({ id }) => id === wordId);
+  const wordItem = words[wordIndex];
 
-  if (!parentNode || !id) return;
+  if (!parentNode || !wordId || wordIndex === -1 || !wordItem) return;
 
-  if (e.target.dataset.action === "delete") {
-    removeWord(parentNode, id, wordIndex);
-  } else if (e.target.dataset.action === "check") {
-    checkWord(parentNode, word);
-  } else if (e.target.matches(".edit")) {
-    editWord(e, parentNode);
-  } else if (e.target.matches(".hide")) {
-    hideWord(e, parentNode, word);
+  if (target.dataset.action === "delete") {
+    removeWord(parentNode, wordItem, wordIndex);
+  } else if (target.dataset.action === "check") {
+    checkWord(parentNode, wordItem);
+  } else if (target.matches(".edit")) {
+    editWord(target, parentNode, wordItem);
+  } else if (target.matches(".hide")) {
+    hideWord(target, parentNode, wordItem);
+  } else if (target.matches(".more-link")) {
+    localStorage.setItem("selectedWord", JSON.stringify(wordId));
+    window.location.href = "card.html";
   } else return;
   // renderList();
-  // saveToLS();
+  // saveWordsToLS(words);
+  // saveToLS("words", words);
 }
 
-function removeWord(parentNode, id, wordIndex) {
+function removeWord(parentNode, wordItem, wordIndex) {
   if (wordIndex !== -1) {
     words.splice(wordIndex, 1);
     parentNode.remove();
-    checkEmptyList();
-    updateWordCount();
-    saveToLS();
+    showEmptyList();
+    updateWordCount(words);
+    // saveWordsToLS(words);
+    saveToLS("words", words);
     renderList();
+    delWords.push(wordItem);
+    saveToLS("delWords", delWords);
+    updateDeletedWordCount(delWords);
+  }
+
+  if (checkWords.length) clearCheckWords(checkWords);
+  // if (delWords.length) clearDelTasks();
+  // if (!words.length) showEmptyList();
+
+  if (!words.length) {
+    showEmptyList();
+    updatePageControl(words);
+    updateToggleSelectAllBtn();
+    updateDelAllWordsBtn();
+  } else if (words.length === pageSize) {
+    generatePageNumbers();
   }
 }
 
-function checkWord(parentNode, word) {
+function checkWord(parentNode, wordItem) {
   parentNode.classList.toggle("checked");
-  word.check = !word.check;
+  wordItem.check = !wordItem.check;
+
+  if (checkWords.length) clearCheckWords(checkWords);
+  // if (delWords.length) clearDelTasks();
+
+  updateDelDoneWordsBtn();
+  updateMarkUndoneBtn();
+  updateToggleSelectAllBtn();
+
   renderList();
-  saveToLS();
+  // saveWordsToLS(words);
+  saveToLS("words", words);
 }
 
-function hideWord(e, parentNode, word) {
-  if (e.target.matches(".hide-eng")) {
-    const engText = parentNode.querySelector(".eng-word");
-    const hideEng = parentNode.querySelector("button.hide-eng");
+function hideWord(target, parentNode, wordItem) {
+  if (target.matches(".hide-word1")) {
+    const word1Text = parentNode.querySelector(".word1-text");
+    const hideWord1 = parentNode.querySelector("button.hide-word1");
 
-    if (word.engHide) {
-      word.engHide = false;
-      engText.textContent = word.eng;
-      hideEng.innerHTML = `<i class="fas fa-eye-slash"></i> Hide`;
+    if (wordItem.isWord1Hidden) {
+      wordItem.isWord1Hidden = false;
+      word1Text.textContent = wordItem.word1;
+      hideWord1.innerHTML = `<i class="fas fa-eye-slash"></i> Hide`;
     } else {
-      word.engHide = true;
-      engText.textContent = "😊";
-      hideEng.innerHTML = `<i class="fas fa-eye"></i> Show`;
+      wordItem.isWord1Hidden = true;
+      word1Text.textContent = "😊";
+      hideWord1.innerHTML = `<i class="fas fa-eye"></i> Show`;
     }
-    saveToLS();
+    // saveWordsToLS(words);
+    saveToLS("words", words);
   }
-  if (e.target.matches(".hide-rus")) {
-    const rusText = parentNode.querySelector(".rus-word");
-    const hideRus = parentNode.querySelector("button.hide-rus");
-    word.rusHide = !word.rusHide;
+  if (target.matches(".hide-word2")) {
+    const word2Text = parentNode.querySelector(".word2-text");
+    const hideWord2 = parentNode.querySelector("button.hide-word2");
+    wordItem.isWord2Hidden = !wordItem.isWord2Hidden;
 
-    if (word.rusHide) {
-      rusText.textContent = "😊";
-      hideRus.innerHTML = `<i class="fas fa-eye"></i> Show`;
+    if (wordItem.isWord2Hidden) {
+      word2Text.textContent = "😊";
+      hideWord2.innerHTML = `<i class="fas fa-eye"></i> Show`;
     } else {
-      rusText.textContent = word.rus;
-      hideRus.innerHTML = `<i class="fas fa-eye-slash"></i> Hide`;
+      word2Text.textContent = wordItem.word2;
+      hideWord2.innerHTML = `<i class="fas fa-eye-slash"></i> Hide`;
     }
-    saveToLS();
+    // saveWordsToLS(words);
+    saveToLS("words", words);
   }
 }
 
-function editWord(e, parentNode) {
-  console.log("editWord");
-  const eng = parentNode.querySelector(".eng-word");
-  const rus = parentNode.querySelector(".rus-word");
+function editWord(target, parentNode, wordItem) {
+  const word1Text = parentNode.querySelector(".word1-text");
+  const word2Text = parentNode.querySelector(".word2-text");
 
-  if (e.target.matches(".edit-eng")) {
-    console.log("edit eng word");
-    eng.contentEditable = "true";
+  if (target.matches(".edit-word1")) {
+    if (wordItem.isWord1Hidden) return;
+    word1Text.contentEditable = "true";
 
-    eng.focus();
+    word1Text.focus();
     const range = document.createRange();
     const selection = window.getSelection();
-    range.selectNodeContents(eng);
+    range.selectNodeContents(word1Text);
     range.collapse(false);
     selection.removeAllRanges();
     selection.addRange(range);
 
-    eng.addEventListener("keydown", (e) => {
+    word1Text.addEventListener("keydown", (e) => {
       if (e.keyCode === 13) {
         e.preventDefault();
-        eng.blur();
+        word1Text.blur();
       }
     });
   }
 
-  if (e.target.matches(".edit-rus")) {
-    console.log("edit rus word");
-    rus.contentEditable = "true";
-    rus.focus();
+  if (target.matches(".edit-word2")) {
+    if (wordItem.isWord2Hidden) return;
+    word2Text.contentEditable = "true";
+
+    word2Text.focus();
     const range = document.createRange();
     const selection = window.getSelection();
-    range.selectNodeContents(rus);
+    range.selectNodeContents(word2Text);
     range.collapse(false);
     selection.removeAllRanges();
     selection.addRange(range);
 
-    rus.addEventListener("keydown", (e) => {
+    word2Text.addEventListener("keydown", (e) => {
       if (e.keyCode === 13) {
         e.preventDefault();
-        rus.blur();
+        word2Text.blur();
       }
     });
   }
 
-  function handleBlur(event, newText, property, id) {
-    console.log("handleBlur");
-    const wrd = words.find((word) => word.id == id);
-    // console.log(wrd);
+  function handleBlur(event, newText, property, wordId) {
+    const wrd = words.find((word) => word.id == wordId);
     // if (!parentNode || !wrd || !newText) return;
 
     const newWordText = newText.trim();
@@ -134,17 +178,17 @@ function editWord(e, parentNode) {
 
     if (newWordText !== wrd[property]) {
       wrd[property] = newWordText;
-      saveToLS();
+      // saveWordsToLS(words);
+      saveToLS("words", words);
     }
-    console.log(event.target);
     event.target.contentEditable = "false";
   }
 
-  eng.addEventListener("blur", (e) => {
-    handleBlur(e, eng.innerText, "eng", parentNode.dataset.id);
+  word1Text.addEventListener("blur", (e) => {
+    handleBlur(e, word1Text.innerText, "word1", parentNode.dataset.id);
   });
 
-  rus.addEventListener("blur", (e) => {
-    handleBlur(e, rus.innerText, "rus", parentNode.dataset.id);
+  word2Text.addEventListener("blur", (e) => {
+    handleBlur(e, word2Text.innerText, "word2", parentNode.dataset.id);
   });
 }
