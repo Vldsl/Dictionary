@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Корзина удаленных слов</title>
+  </head>
+  <body>
+    <div class="container py-5">
+      <header class="d-flex justify-content-end align-items-center">
+        <nav>
+          <ul class="d-flex justify-content-end gap-3">
+            <li>
+              <a href="index.html">Главная</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div class="mb-4 d-flex justify-content-between align-items-center">
+        <h1 class="">Корзина удаленных слов</h1>
+        <p class="mb-0">
+          Всего:
+          <span id="deleted-word-count" class="deleted-word-amount">0</span>
+          слов
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <input
+          type="text"
+          class="form-control mb-2"
+          id="trash-search-input"
+          placeholder="Поиск слова"
+        />
+        <button class="btn btn-primary me-2" id="restoreAllBtn">
+          Восстановить все
+        </button>
+        <button class="btn btn-primary me-2" id="restoreAllCheckWordsBtn">
+          Восстановить отмеченные
+        </button>
+        <button class="btn btn-danger clearAllBtn" id="clearAllCheckWordsBtn">
+          Удалить отмеченные
+        </button>
+        <button class="btn btn-danger clearAllBtn" id="clearAllBtn">
+          Очистить корзину
+        </button>
+      </div>
+
+      <div id="emptyTrashList" class="alert alert-info empty-list empty-trash">
+        <img src="./img/leaf.svg" alt="Empty" width="48" class="mt-3" />
+        <p class="empty-list__title">Список дел пуст</p>
+      </div>
+
+      <ul class="list-group mt-4" id="deletedWordsList">
+        <!-- Здесь будут отображаться удаленные слова -->
+      </ul>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+    <script src="src/js/trash.js" type="module"></script>
+    <script src="src/js/app.js" type="module"></script>
+  </body>
+</html>
