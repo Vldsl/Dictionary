@@ -1,4 +1,6 @@
-export function isFloat(str) {
+import { word1Input, words } from "./vars";
+
+function isFloat(str) {
   if (typeof str !== "string") {
     return false;
   }
@@ -7,7 +9,7 @@ export function isFloat(str) {
   return !isNaN(num) && isFinite(num);
 }
 
-export function hasSpecialCharacters(str) {
+function hasSpecialCharacters(str) {
   const specialChars = [
     "!",
     "@",
@@ -46,4 +48,22 @@ export function hasSpecialCharacters(str) {
   return false;
 }
 
-function validator(str) {}
+export const isValid = (str) => {
+  console.log({
+    isFloat: isFloat(str),
+    hasSpecialCharacters: hasSpecialCharacters(str),
+    isNotEmpty: str.length < 3,
+    isExist: words.find(
+      ({ word1 }) => word1.toLowerCase() === str.toLowerCase()
+    ),
+  });
+  return {
+    isFloat: isFloat(str),
+    hasSpecialCharacters: hasSpecialCharacters(str),
+    isNotEmpty: str.length < 3,
+    isExist: words.find(
+      ({ word1 }) =>
+        word1.toLowerCase() === word1Input.value.trim().toLowerCase()
+    ),
+  };
+};
