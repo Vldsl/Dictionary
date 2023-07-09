@@ -12,7 +12,7 @@ import {
   saveToLS,
   generatePageNumbers,
 } from "./utils";
-import { checkWords, delWords, pageSize, words } from "./vars";
+import { checkWords, delWords, list, pageSize, words } from "./vars";
 
 export function handleAction(e) {
   e.preventDefault();
@@ -47,7 +47,7 @@ function removeWord(parentNode, wordItem, wordIndex) {
   if (wordIndex !== -1) {
     words.splice(wordIndex, 1);
     parentNode.remove();
-    showEmptyList();
+    showEmptyList(list);
     updateWordCount(words);
     // saveWordsToLS(words);
     saveToLS("words", words);
@@ -62,7 +62,7 @@ function removeWord(parentNode, wordItem, wordIndex) {
   // if (!words.length) showEmptyList();
 
   if (!words.length) {
-    showEmptyList();
+    showEmptyList(list);
     updatePageControl(words);
     updateToggleSelectAllBtn();
     updateDelAllWordsBtn();
@@ -88,6 +88,7 @@ function checkWord(parentNode, wordItem) {
 }
 
 function hideWord(target, parentNode, wordItem) {
+  // Нужно сделать функцию унивверсальной, чтобы ещё можно было применять её скрытия первого или второго слово во всём списке
   if (target.matches(".hide-word1")) {
     const word1Text = parentNode.querySelector(".word1-text");
     const hideWord1 = parentNode.querySelector("button.hide-word1");
@@ -122,6 +123,8 @@ function hideWord(target, parentNode, wordItem) {
 }
 
 function editWord(target, parentNode, wordItem) {
+  // Добавить валидацию для этой функции
+  // Нужно сделать функцию унивверсальной, чтобы ещё можно было применять её для редактирования примеров
   const word1Text = parentNode.querySelector(".word1-text");
   const word2Text = parentNode.querySelector(".word2-text");
 

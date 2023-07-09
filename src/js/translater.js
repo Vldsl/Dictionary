@@ -10,6 +10,7 @@ import {
   deleteDoneTasks,
   handlePageNavigation,
   handlePageSelection,
+  addExample,
 } from "./modules/listActions";
 import {
   form,
@@ -25,8 +26,7 @@ import {
   pageIndex,
   numberOfPage,
   pageControl,
-  addExample,
-  wordInputs,
+  examplesBox,
 } from "./modules/vars";
 
 document.addEventListener("DOMContentLoaded", () => load());
@@ -49,9 +49,9 @@ numberOfPage.addEventListener("click", (e) =>
   handlePageSelection(e, pageIndex)
 );
 
-addExample.addEventListener("click", () => {
-  wordInputs.insertAdjacentHTML(
-    "beforeend",
-    `<input  placeholder='Добавить пример'>`
-  );
+examplesBox.addEventListener("click", (e) => {
+  const { target } = e;
+  if (!target.matches(".add-example-btn")) return;
+  target.remove();
+  addExample();
 });

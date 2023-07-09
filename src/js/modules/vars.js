@@ -30,8 +30,7 @@ export const actionFind = document.querySelector("#action-find");
 export const numberOfPage = document.querySelector("#numberOfPage"),
   pageControl = document.querySelector(".pageControl");
 
-export const wordInputs = document.querySelector(".word-inputs"),
-  addExample = document.querySelector(".add-example");
+export const examplesBox = document.querySelector(".examples-box");
 
 export let words = JSON.parse(localStorage.getItem("words")) ?? [],
   checkWords = JSON.parse(localStorage.getItem("checkWords")) ?? [],

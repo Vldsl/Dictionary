@@ -58,12 +58,6 @@
         <button type="button" class="btn btn-danger delete-checked-tasks">
           Удалить выполненные задачи
         </button>
-        <!-- <button
-          type="button"
-          class="btn btn-secondary restore-all-deleted-tasks"
-        >
-          Востановить все удаленные задачи
-        </button> -->
       </div>
 
       <form id="form">
@@ -91,10 +85,20 @@
             />
           </div>
         </div>
+        <div class="examples-box">
+          <div class="example-item d-flex gap-3">
+            <input
+              class="example-input form-control"
+              type="text"
+              name="input"
+              placeholder="Добавить пример"
+            />
+            <button type="button" class="btn btn-primary add-example-btn">
+              Добавить пример
+            </button>
+          </div>
+        </div>
         <div class="mb-3 select">
-          <button type="button" class="btn btn-primary add-example">
-            Добавить пример
-          </button>
           <label for="category-select">Категория:</label>
           <select id="category-select">
             <option value="" selected>Выберите</option>
@@ -186,7 +190,7 @@
       </div>
 
       <ul id="list" class="list-group mb-4">
-        <div id="loader" class="loader"></div>
+        <!-- <div id="loader" class="loader"></div> -->
       </ul>
 
       <div class="pageControl">

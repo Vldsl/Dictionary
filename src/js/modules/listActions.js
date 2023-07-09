@@ -12,6 +12,8 @@ import {
   updatePageControl,
   generatePageNumbers,
   saveToLS,
+  saveExample,
+  deleteAllExamplesInput,
 } from "./utils";
 import { isValid } from "./validator";
 import {
@@ -31,7 +33,26 @@ import {
   word2Input,
   word1Input,
   pageSize,
+  examplesBox,
 } from "./vars";
+
+export const addExample = () => {
+  // Если пользователь не добавил пример, то можно самому добавить пример с интернета
+  examplesBox.insertAdjacentHTML(
+    "beforeend",
+    `<div class="example-item d-flex gap-3">
+		<input
+			class="example-input form-control"
+			type="text"
+			name="input"
+			placeholder="Добавить пример"
+		/>
+		<button type="button" class="btn btn-primary add-example-btn">
+			Добавить пример
+		</button>
+	</div>`
+  );
+};
 
 export const handlePageNavigation = (e, pageIndex) => {
   const { target } = e;
@@ -110,7 +131,6 @@ const markAllDone = (words, checkWords) => {
   //   ...JSON.parse(localStorage.getItem("words"))
   // );
   checkWords = [...words];
-  console.log(checkWords);
   // saveCheckWordsToLS(checkWords);
   saveToLS("checkWords", checkWords);
   // words.forEach(({ check }) => (check = true));
@@ -193,7 +213,7 @@ export const deleteAllTasks = (words) => {
   console.log(words);
   list.innerHTML = "";
 
-  showEmptyList();
+  showEmptyList(list);
   // saveWordsToLS(words);
   saveToLS("words", words);
   saveToLS("delWords", delWords);
@@ -217,7 +237,7 @@ export const deleteDoneTasks = (words) => {
   saveToLS("delWords", delWords);
 
   if (words.length) renderList();
-  else showEmptyList();
+  else showEmptyList(list);
 
   updateToggleSelectAllBtn();
   updateMarkUndoneBtn();
@@ -250,20 +270,38 @@ export function addWord(e) {
   }
   form.input.forEach((el) => el.classList.remove("error"));
 
+  // Нужно доделать этот объект, нужно написать объекты внутри этого объекта
   const newWord = {
     id: Date.now(),
+    check: false,
+    done: false,
     word1: word1text,
     word2: word2Input.value.trim(),
     isWord1Hidden: false,
     isWord2Hidden: false,
-    check: false,
-    done: false,
+    wrdw: {
+      text: "text",
+      isHidden: false,
+    },
+    wrdw2: {
+      text: "text",
+      isHidden: false,
+    },
     category: category.value.trim(),
     part: part.value.trim(),
     level: level.value.trim(),
     type: type.value.trim(),
+    filter: {
+      category: category.value.trim(),
+      part: part.value.trim(),
+      level: level.value.trim(),
+      type: type.value.trim(),
+    },
+    examples: [],
   };
   words.push(newWord);
+  saveExample(newWord);
+  deleteAllExamplesInput();
   words.sort((a, b) => a.word1.localeCompare(b.word1));
   renderList();
   // saveWordsToLS(words);

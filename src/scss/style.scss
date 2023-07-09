@@ -223,6 +223,14 @@ body {
   position: relative;
 }
 
+p {
+  margin: 0;
+}
+
+p + p {
+  margin-top: 1rem;
+}
+
 .new-word::before {
   content: "";
   position: absolute;
@@ -318,5 +326,45 @@ body {
     &.selected {
       background-color: #db3434;
     }
+  }
+}
+
+.examples {
+  padding: 10px 0 10px 30px;
+  background-color: silver;
+}
+
+.example-input + .example-input {
+  margin-top: 1rem;
+}
+
+// .example-input:last-child {
+.example-input {
+  margin-bottom: 1rem;
+}
+
+.add-example-btn {
+  min-width: 200px;
+}
+
+#list {
+  & li.list-group-item {
+    border-bottom: 1px solid black;
+  }
+}
+
+.edit {
+  &:hover {
+    border: 1px solid #333;
+  }
+}
+.delete {
+  &:hover {
+    border: 1px solid #333;
+  }
+}
+.hide {
+  &:hover {
+    border: 1px solid #333;
   }
 }
