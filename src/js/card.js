@@ -18,6 +18,9 @@ export const saveWordId = (id) => {
 
 console.log(cardWord1, selectedWord, cardOfWord);
 const showCard = () => {
+  /*
+	 На странице можно показывать примеры пользователя и примеры с интернета
+	*/
   console.log("show");
   cardWord1.innerText += cardOfWord.word1;
   cardWord2.innerText += cardOfWord.word2;

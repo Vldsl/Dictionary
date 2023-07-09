@@ -49,6 +49,7 @@ function hasSpecialCharacters(str) {
 }
 
 export const isValid = (str) => {
+  // Валидатор нужно доделать, перестал работать код, который запрещал добавлять уже имеющееся слово в списке, и код который отвечает за длинну введённых символов
   console.log({
     isFloat: isFloat(str),
     hasSpecialCharacters: hasSpecialCharacters(str),

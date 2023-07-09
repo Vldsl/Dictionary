@@ -1,5 +1,5 @@
 import { searchWords } from "./modules/listActions";
-import { saveToLS, showEmptyTrash } from "./modules/utils";
+import { saveToLS, showEmptyList } from "./modules/utils";
 import { delWords, words } from "./modules/vars";
 
 (function () {
@@ -77,7 +77,7 @@ import { delWords, words } from "./modules/vars";
   const actionDelete = (parentNode, wordIndex) => {
     parentNode.remove();
     delWords.splice(wordIndex, 1);
-    saveToLS("delWords", delWords);
+    saveToLS("delWords", delWords);пше фвв
 
     // updateCheckboxState(id, checked);
   };
@@ -91,7 +91,7 @@ import { delWords, words } from "./modules/vars";
     // saveWordsToLS(words);
     saveToLS("words", words);
     saveToLS("delWords", delWords);
-    showEmptyTrash();
+    showEmptyList(trashList);
   };
 
   const restoreWord = (parentNode, word, wordIndex) => {
@@ -103,10 +103,13 @@ import { delWords, words } from "./modules/vars";
     saveToLS("delWords", delWords);
     // saveWordsToLS(words);
     saveToLS("words", words);
-    if (!delWords.length) showEmptyTrash();
+    if (!delWords.length) {
+      showEmptyList(trashList);
+    }
   };
 
   const handleTrashActions = (e) => {
+    // Нужно доделать возможность отмечать слова для выборочного удаленния или востановления
     const { target } = e;
     if (!target.matches(".btn")) return;
     // Не все эти переменные я использую в следующих функциях, так что лучше что-то вызывать только в какойто одной функции
@@ -132,7 +135,7 @@ import { delWords, words } from "./modules/vars";
     trashList.innerHTML = "";
     delWords = [];
     localStorage.setItem("delWords", JSON.stringify(delWords));
-    showEmptyTrash();
+    showEmptyList(trashList);
   };
 
   const saveDelWordsToLS = () => {
@@ -144,7 +147,9 @@ import { delWords, words } from "./modules/vars";
     if (delWords.length) {
       renderDeletedWords();
       updateDeletedWordsAmount();
-    } else showEmptyTrash();
+    } else {
+      showEmptyList(trashList);
+    }
 
     updateRestoreAllBtn();
     updateClearAllBtn();
