@@ -14,9 +14,11 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/style.css" />
-    <script type="module" crossorigin src="/assets/index-6f022d79.js"></script>
-    <link rel="stylesheet" href="/assets/index-5f7e8728.css">
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <script type="module" crossorigin src="/assets/index-5e835ceb.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-30bb83a4.js">
+    <link rel="modulepreload" crossorigin href="/assets/listActions-6b619679.js">
+    <link rel="stylesheet" href="/assets/style-0efba7aa.css">
   </head>
 
   <body>
@@ -60,12 +62,6 @@
         <button type="button" class="btn btn-danger delete-checked-tasks">
           Удалить выполненные задачи
         </button>
-        <!-- <button
-          type="button"
-          class="btn btn-secondary restore-all-deleted-tasks"
-        >
-          Востановить все удаленные задачи
-        </button> -->
       </div>
 
       <form id="form">
@@ -93,10 +89,20 @@
             />
           </div>
         </div>
+        <div class="examples-box">
+          <div class="example-item d-flex gap-3">
+            <input
+              class="example-input form-control"
+              type="text"
+              name="input"
+              placeholder="Добавить пример"
+            />
+            <button type="button" class="btn btn-primary add-example-btn">
+              Добавить пример
+            </button>
+          </div>
+        </div>
         <div class="mb-3 select">
-          <button type="button" class="btn btn-primary add-example">
-            Добавить пример
-          </button>
           <label for="category-select">Категория:</label>
           <select id="category-select">
             <option value="" selected>Выберите</option>
@@ -188,7 +194,7 @@
       </div>
 
       <ul id="list" class="list-group mb-4">
-        <div id="loader" class="loader"></div>
+        <!-- <div id="loader" class="loader"></div> -->
       </ul>
 
       <div class="pageControl">

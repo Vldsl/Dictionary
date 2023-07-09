@@ -46,15 +46,13 @@ const utils = {
     words.sort((a, b) => a.check - b.check);
   },
   // Лучше добавлять html код через js или лучше просто убирать его дисплеем со страницы?
-  showEmptyList: (parent) => {
-    console.log(parent);
-    parent.innerHTML = `
+  showEmptyList: (parent) =>
+    (parent.innerHTML = `
 				<div id="emptyList" class="alert alert-info empty-list">
 					<img src="./img/leaf.svg" alt="Empty" width="48" class="mt-3">
 					<p class="empty-list__title">Список пуст</p>
 				</div>
-			`;
-  },
+			`),
   clearCheckWords: (checkWords) => {
     // checkWords.splice(0, checkWords.length, ...[]);
     checkWords = [];
@@ -75,7 +73,7 @@ const utils = {
     (delDoneWordsBtn.disabled =
       !words.length || !words.some(({ check }) => check)),
   updateToggleSelectAllBtn: () => {
-    console.log("updateToggleSelectAllBtn");
+    // console.log("updateToggleSelectAllBtn");
     toggleSelectAllBtn.textContent = checkWords.length
       ? "Вернуть исходное выделение"
       : "Выделить все";

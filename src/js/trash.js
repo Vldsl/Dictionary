@@ -77,7 +77,7 @@ import { delWords, words } from "./modules/vars";
   const actionDelete = (parentNode, wordIndex) => {
     parentNode.remove();
     delWords.splice(wordIndex, 1);
-    saveToLS("delWords", delWords);пше фвв
+    saveToLS("delWords", delWords);
 
     // updateCheckboxState(id, checked);
   };

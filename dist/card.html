@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Card</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      integrity="sha512-xxxx"
+      crossorigin="anonymous"
+    />
+    <!-- Custom CSS -->
+    <style>
+      body {
+        padding: 20px;
+      }
+      .card {
+        margin: 0 auto;
+      }
+
+      .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+
+      #cardWord1 {
+        font-size: 70px;
+      }
+
+      #cardWord1,
+      #cardWord2 {
+        font-weight: bold;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/home-f6fee5c9.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-30bb83a4.js">
+    <link rel="stylesheet" href="/assets/style-0efba7aa.css">
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-body">
+        <!-- <h5 class="card-title">Word Card</h5> -->
+        <div class="form-group">
+          <!-- Original Word: -->
+          <p id="cardWord1"></p>
+        </div>
+        <div class="form-group">Translation: <span id="cardWord2"></span></div>
+        <div class="form-group" id="categoryInput"></div>
+        <div class="form-group" id="partInput"></div>
+        <div class="form-group" id="levelInput"></div>
+        <div class="form-group" id="typeInput"></div>
+      </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+      integrity="sha512-xxxx"
+      crossorigin="anonymous"
+    ></script>
+    
+    
+  </body>
+</html>
