@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Корзина удаленных слов</title>
+    <script type="module" crossorigin src="/assets/about-1ca173bb.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/index-695ebc9f.js">
+    <link rel="stylesheet" href="/assets/index-38b38536.css">
+  </head>
+  <body>
+    <div class="container py-5">
+      <header class="d-flex justify-content-end align-items-center">
+        <nav>
+          <ul class="d-flex justify-content-end gap-3">
+            <li>
+              <a href="index.html">Главная</a>
+            </li>
+            <li><a href="learn.html">Учить слова</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div class="mb-4 d-flex justify-content-between align-items-center">
+        <h1 class="">Корзина удаленных слов</h1>
+        <p class="mb-0">
+          Всего:
+          <span id="deleted-word-count" class="deleted-word-amount">0</span>
+          слов
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <input
+          type="text"
+          class="form-control mb-2"
+          id="trash-search-input"
+          placeholder="Поиск слова"
+        />
+        <button class="btn btn-primary me-2" id="restoreAllBtn">
+          Восстановить все
+        </button>
+        <button class="btn btn-primary me-2" id="restoreAllCheckWordsBtn">
+          Восстановить отмеченные
+        </button>
+        <button class="btn btn-danger clearAllBtn" id="clearAllCheckWordsBtn">
+          Удалить отмеченные
+        </button>
+        <button class="btn btn-danger clearAllBtn" id="clearAllBtn">
+          Очистить корзину
+        </button>
+      </div>
+
+      <ul class="list-group mt-4" id="deletedWordsList">
+        <!-- Здесь будут отображаться удаленные слова -->
+      </ul>
+    </div>
+
+    
+    
+  </body>
+</html>

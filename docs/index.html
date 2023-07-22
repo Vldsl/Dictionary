@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictionary</title>
+    <script type="module" crossorigin src="/assets/index-695ebc9f.js"></script>
+    <link rel="stylesheet" href="/assets/index-38b38536.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="mt-3">
+        <nav>
+          <ul class="d-flex justify-content-end gap-3">
+            <li>
+              <a href="index.html">Главная</a>
+            </li>
+            <li><a href="learn.html">Учить слова</a></li>
+            <li>
+              <a href="trash.html" class="trash-link">
+                <i class="fas fa-trash trash-icon"></i>
+                <span class="deleted-word-count">0</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div class="mb-4 d-flex justify-content-between align-items-center">
+        <h1>Словарь</h1>
+        <p class="mb-0">Всего: <span id="word-count">0</span> слов</p>
+      </div>
+      <div class="words-control mb-3">
+        <input
+          type="text"
+          class="form-control mb-2"
+          id="search-input"
+          placeholder="Поиск слова"
+        />
+
+        <button type="button" class="btn btn-primary check-all">
+          Отметить все
+        </button>
+        <button type="button" class="btn btn-primary remove-all-marks">
+          Снять все отметки
+        </button>
+        <button type="button" class="btn btn-danger delete-all-tasks">
+          Удалить все
+        </button>
+        <button type="button" class="btn btn-danger delete-checked-tasks">
+          Удалить выполненные задачи
+        </button>
+      </div>
+
+      <form id="form">
+        <div class="mb-3 d-flex gap-3 word-inputs">
+          <div class="flex-grow-1 flex-shrink-1 flex-basis-auto">
+            <label for="word1Input" class="form-label">Слово</label>
+            <input
+              type="text"
+              id="word1Input"
+              class="form-control"
+              name="input"
+              required
+              minlength="1"
+            />
+          </div>
+          <div class="flex-grow-1 flex-shrink-1 flex-basis-auto">
+            <label for="word2Input" class="form-label">Перевод</label>
+            <input
+              type="text"
+              id="word2Input"
+              class="form-control"
+              name="input"
+              required
+              minlength="1"
+            />
+          </div>
+        </div>
+        <div class="examples-box">
+          <div class="example-box-input d-flex align-items-start gap-3">
+            <input
+              class="example-input form-control"
+              type="text"
+              name="input"
+              placeholder="Добавить пример"
+            />
+            <button type="button" class="btn btn-primary add-example-btn">
+              Добавить пример
+            </button>
+          </div>
+        </div>
+        <div class="definition-box">
+          <div class="definition-box-input d-flex align-items-start gap-3">
+            <textarea
+              class="definition-input form-control"
+              type="text"
+              name="input"
+              placeholder="Добавить определение"
+            ></textarea>
+            <button type="button" class="btn btn-primary add-definition-btn">
+              Добавить определение
+            </button>
+          </div>
+        </div>
+        <div class="mb-3 select">
+          <label for="category-select">Категория:</label>
+          <select id="category-select">
+            <option value="" selected>Выберите</option>
+            <option value="food">Еда</option>
+            <option value="animals">Животные</option>
+            <option value="nature">Природа</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <label for="part-select">Часть речи:</label>
+          <select id="part-select">
+            <option value="" selected>Выберите</option>
+            <option value="noun">Существительные</option>
+            <option value="verb">Глаголы</option>
+            <option value="adjective">Прилагательные</option>
+            <option value="adverb">Наречие</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <label for="level-select">Уровень сложности:</label>
+          <select id="level-select">
+            <option value="" selected>Выберите</option>
+            <option value="easy">Начальный</option>
+            <option value="medium">Средний</option>
+            <option value="hard">Продвинутый</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <label for="type-select">Тип использования:</label>
+          <select id="type-select">
+            <option value="" selected>Выберите</option>
+            <option value="colloquial">Разговорный</option>
+            <option value="formal">Официальный</option>
+            <option value="technical">Технический</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+        </div>
+        <button id="add-word-btn" class="btn btn-primary mb-4" type="submit">
+          Сохранить слово
+        </button>
+      </form>
+
+      <div class="mb-3 d-flex justify-content-between">
+        <h2>Сохраненные слова:</h2>
+        <div id="action-find">
+          <!--Нужно изменить название этого id-->
+          <select id="category-find">
+            <option value="" selected>Выберите категорию</option>
+            <option value="food">Еда</option>
+            <option value="animals">Животные</option>
+            <option value="nature">Природа</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <select id="part-find">
+            <option value="" selected>Часть речи</option>
+            <option value="noun">Существительные</option>
+            <option value="verb">Глаголы</option>
+            <option value="adjective">Прилагательные</option>
+            <option value="adverb">Наречие</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+          <select id="level-find">
+            <option value="" selected>Уровень сложности</option>
+            <option value="easy">Начальный</option>
+            <option value="medium">Средний</option>
+            <option value="hard">Продвинутый</option>
+          </select>
+          <select id="type-find">
+            <option value="" selected>Тип использования</option>
+            <option value="colloquial">Разговорный</option>
+            <option value="formal">Официальный</option>
+            <option value="technical">Технический</option>
+            <!-- добавьте другие категории, если нужно -->
+          </select>
+        </div>
+      </div>
+      <label for="view-select">Отображение:</label>
+      <select id="view-select">
+        <!-- <option value="" selected>Выберите</option> -->
+        <option value="compact" selected>Компактный вид</option>
+        <option value="detailed">Детальный вид</option>
+        <option value="miniature">Вид с миниатюрами</option>
+        <option value="grid">Список сеткой</option>
+        <!-- добавьте другие категории, если нужно -->
+      </select>
+      <label for="sort-select">Сортировать:</label>
+      <select id="sort-select">
+        <!-- <option value="" selected>Выберите</option> -->
+        <option value="" selected>Выбрать</option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <!-- добавьте другие категории, если нужно -->
+      </select>
+      <div class="mb-3 d-flex justify-content-around">
+        <button
+          class="btn btn-primary hide hide-all-word1 hide-all-words"
+          data-action="hide-all-word1"
+          data-hide-element="word1"
+        >
+          <i class="fas fa-eye-slash"></i>
+          "Show all" and "Hide all"
+        </button>
+        <button
+          class="btn btn-primary hide hide-all-word2 hide-all-words"
+          data-action="hide-all-word2"
+          data-hide-element="word2"
+        >
+          <i class="fas fa-eye-slash"></i>
+          "Show all" and "Hide all"
+        </button>
+      </div>
+
+      <ul id="list" class="list-group mb-4">
+        <!-- <div id="loader" class="loader"></div> -->
+      </ul>
+
+      <div class="pageControl">
+        <button id="prev" type="button">Prev</button>
+        <span id="numberOfPage"> Downloading... </span>
+        <button id="next" type="button">Next</button>
+      </div>
+    </div>
+    
+  </body>
+</html>
