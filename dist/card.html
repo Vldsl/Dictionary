@@ -40,25 +40,60 @@
         font-weight: bold;
       }
     </style>
-    <script type="module" crossorigin src="/assets/home-f6fee5c9.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-30bb83a4.js">
-    <link rel="stylesheet" href="/assets/style-0efba7aa.css">
+    <script type="module" crossorigin src="/assets/home-3bb23b92.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/all.min-c3a0fafa.js">
+    <link rel="stylesheet" href="/assets/all-38b38536.css">
   </head>
   <body>
-    <div class="card">
-      <div class="card-body">
-        <!-- <h5 class="card-title">Word Card</h5> -->
-        <div class="form-group">
-          <!-- Original Word: -->
-          <p id="cardWord1"></p>
+    <div class="container">
+      <header class="mt-3">
+        <nav>
+          <ul class="d-flex justify-content-end gap-3">
+            <li>
+              <a href="index.html">Главная</a>
+            </li>
+            <li><a href="learn.html">Учить слова</a></li>
+            <li>
+              <a href="trash.html" class="trash-link">
+                <i class="fas fa-trash trash-icon"></i>
+                <span class="deleted-word-count">0</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div class="card">
+        <div class="card-body">
+          <!-- <h5 class="card-title">Word Card</h5> -->
+          <div class="form-group">
+            <!-- Original Word: -->
+            <p id="cardWord1"></p>
+          </div>
+          <div class="form-group">
+            Translation: <span id="cardWord2"></span>
+          </div>
+          <div class="form-group" id="categoryInput"></div>
+          <div class="form-group" id="partInput"></div>
+          <div class="form-group" id="levelInput"></div>
+          <div class="form-group" id="typeInput"></div>
         </div>
-        <div class="form-group">Translation: <span id="cardWord2"></span></div>
-        <div class="form-group" id="categoryInput"></div>
-        <div class="form-group" id="partInput"></div>
-        <div class="form-group" id="levelInput"></div>
-        <div class="form-group" id="typeInput"></div>
       </div>
     </div>
+    <!-- Здесь иожно показывать похожие слова, только здесь показывать все примеры, все синонимы и антонимы -->
+
+    <!-- На отдельной странице для каждого слова вы можете показывать более подробную информацию о слове, которая не помещается на странице со списком слов. Вот некоторые предложения о том, что вы можете включить на странице полного просмотра слова:
+
+    Заголовок: Отобразите заголовок слова в верхней части страницы, чтобы пользователи сразу понимали, какое слово они просматривают.
+
+    Подробные сведения: Предоставьте дополнительную информацию о слове, такую как переводы, определения, синонимы, антонимы или другие лексические свойства. Вы можете использовать различные вкладки или разделы, чтобы организовать информацию более удобно для пользователя.
+
+    Примеры использования: Включите примеры предложений, в которых используется данное слово, чтобы пользователи могли лучше понять его контекст и использование.
+
+    Изображение или иллюстрация: Если у вас есть соответствующие изображения или иллюстрации, связанные с словом, вы можете отображать их на странице для визуальной поддержки.
+
+    Звуковое произношение: Если у вас есть аудиофайлы с произношением слова, вы можете предоставить возможность прослушивания произношения прямо на странице.
+
+    Дополнительные функции: Рассмотрите включение дополнительных функций, таких как возможность добавления слова в избранное, создание заметок или комментариев, или даже возможность выполнения тестов или упражнений на основе данного слова. -->
     <!-- Bootstrap JS -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
